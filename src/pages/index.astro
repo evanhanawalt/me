@@ -1,0 +1,99 @@
+---
+import Link from "../components/Link.astro";
+
+const links = [
+  {
+    link: "https://cssbattles.evanhanawalt.com",
+    text: "CSS Battles Solutions",
+  },
+  {
+    link: "https://vaporwave.evanhanawalt.com",
+    text: "Vaporwave Style Page",
+  },
+  {
+    link: "https://spider.evanhanawalt.com",
+    text: "Basic Radar Chart",
+  },
+  {
+    link: "https://carousel.evanhanawalt.com",
+    text: "Basic Carousel",
+  },
+];
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content="Personal site for Evan Hanawalt" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <title>Evan Hanawalt | Pesonal Site</title>
+    <script type="text/javascript">
+      function changeTheme() {
+        if (
+          localStorage.theme === "dark" ||
+          (!("theme" in localStorage) &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches)
+        ) {
+          document.documentElement.classList.add("dark");
+        } else {
+          document.documentElement.classList.remove("dark");
+        }
+      }
+      function setLightMode() {
+        localStorage.theme = "light";
+        changeTheme();
+      }
+      function setDarkMode() {
+        localStorage.theme = "dark";
+        changeTheme();
+      }
+      changeTheme();
+    </script>
+    <style>
+      * {
+        font-family: "Exo", sans-serif;
+      }
+    </style>
+  </head>
+
+  <body
+    class="bg-slate-300 dark:bg-gray-900 text-slate-900 dark:text-slate-300 transition-colors duration-300"
+  >
+    <main
+      class="flex flex-col w-full justify-center items-center gap-4 pt-4 pb-10"
+    >
+      <div class="flex flex-row gap-1 self-end bg pr-3">
+        <button class="dark:hidden" onclick="setDarkMode()"
+          >Change Theme: &#127762;</button
+        >
+        <button class="hidden dark:inline-block" onclick="setLightMode()"
+          >Change Theme: &#128161;</button
+        >
+      </div>
+      <h1 class="text-3xl">Hi, I'm Evan</h1>
+
+      <img
+        src="/evan.jpeg"
+        alt="Image of Evan"
+        class="max-w-sm md:max-w-md rounded-full"
+      />
+      <p>I like coding, <small>and a bunch of other stuff</small></p>
+      <Link link="https://github.com/evanhanawalt" text="Github" />
+      <h1 class="text-xl underline mt-3">Experiments</h1>
+      {
+        links.map((value) => {
+          return <Link link={value.link} text={value.text} />;
+        })
+      }
+    </main>
+  </body>
+</html>
